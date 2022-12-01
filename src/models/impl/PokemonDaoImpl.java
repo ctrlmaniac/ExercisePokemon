@@ -1,6 +1,10 @@
 package models.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import models.Pokemon;
@@ -31,8 +35,29 @@ public class PokemonDaoImpl implements PokemonDao {
 
     @Override
     public Pokemon createPokemon(Pokemon pokemon) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            PreparedStatement ps = conn.prepareStatement("""
+                        INSERT INTO pokemon.pokemon (name, elementType, level)
+                        VALUES (?, ?, ?)
+                    """, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, pokemon.getName());
+            ps.setString(2, pokemon.getElementType());
+            ps.setInt(3, pokemon.getLevel());
+
+            int rowInserted = ps.executeUpdate();
+
+            System.out.println("Inserito " + rowInserted + " Supplier");
+
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                pokemon.setId(generatedKeys.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pokemon;
     }
 
     @Override
