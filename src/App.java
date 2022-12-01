@@ -33,5 +33,10 @@ public class App {
         for (int id : Ex2.convertFromList2Array(pokemonFactory.getAllPokemon())) {
             System.out.println(id);
         }
+
+        // EX 2.2
+        for (int id : Ex2.convertFromList2Array(pokemonFactory.getAllPokemon())) {
+            System.out.println(Ex2.multipyOrDivide(id));
+        }
     }
 }

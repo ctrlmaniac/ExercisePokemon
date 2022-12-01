@@ -14,4 +14,8 @@ public class Ex2 {
 
         return array;
     }
+
+    public static int multipyOrDivide(int id) {
+        return (id % 2 == 0) ? id * 2 : id / 3;
+    }
 }
