@@ -110,14 +110,35 @@ public class PokemonDaoImpl implements PokemonDao {
 
     @Override
     public void updatePokemon(Pokemon pokemon) {
-        // TODO Auto-generated method stub
+        try {
+            PreparedStatement ps = conn.prepareStatement("""
+                    UPDATE pokemon.pokemon SET name=?, elementType=?, level=? WHERE id=?;
+                    """);
+            ps.setString(1, pokemon.getName());
+            ps.setString(2, pokemon.getElementType());
+            ps.setInt(3, pokemon.getLevel());
+            ps.setInt(4, pokemon.getId());
 
+            int rowUpdate = ps.executeUpdate();
+
+            System.out.println("LOG: Aggiornamento di " + rowUpdate + " avvenuto con successo");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deletePokemon(Pokemon pokemon) {
-        // TODO Auto-generated method stub
+        try {
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM pokemon.pokemon WHERE id = ?");
+            ps.setInt(1, pokemon.getId());
 
+            int rowDelete = ps.executeUpdate();
+
+            System.out.println("LOG: Cancellazione di " + rowDelete + " avvenuto con successo");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

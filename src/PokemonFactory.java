@@ -26,4 +26,12 @@ public class PokemonFactory {
     public Pokemon getPokemonById(int id) {
         return pokemonDao.getPokemonById(id);
     }
+
+    public void updatePokemon(Pokemon pokemon) {
+        pokemonDao.updatePokemon(pokemon);
+    }
+
+    public void deletePokemon(Pokemon pokemon) {
+        pokemonDao.deletePokemon(pokemon);
+    }
 }
