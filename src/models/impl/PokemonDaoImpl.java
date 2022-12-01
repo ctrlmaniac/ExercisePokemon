@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Pokemon;
@@ -62,14 +63,49 @@ public class PokemonDaoImpl implements PokemonDao {
 
     @Override
     public Pokemon getPokemonById(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        Pokemon p = null;
+
+        try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM pokemon.pokemon WHERE id = " + id);
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String elementType = rs.getString("elementType");
+                int level = rs.getInt("level");
+
+                p = new Pokemon(id, name, elementType, level);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return p;
     }
 
     @Override
     public List<Pokemon> getAllPokemon() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Pokemon> pokemons = new ArrayList<>();
+
+        try {
+            Statement st = conn.createStatement();
+            ResultSet resultSet = st.executeQuery("SELECT * FROM pokemon.pokemon");
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String elementType = resultSet.getString("elementType");
+                int level = resultSet.getInt("level");
+
+                Pokemon tempPokemon = new Pokemon(id, name, elementType, level);
+
+                pokemons.add(tempPokemon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pokemons;
     }
 
     @Override

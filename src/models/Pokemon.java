@@ -55,4 +55,20 @@ public class Pokemon {
     public String toString() {
         return "Pokemon [id=" + id + ", name=" + name + ", elementType=" + elementType + ", level=" + level + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Pokemon)) {
+            return false;
+        }
+
+        Pokemon p = (Pokemon) o;
+
+        return id == p.getId();
+
+    }
 }
