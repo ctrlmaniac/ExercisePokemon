@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 import models.Pokemon;
 
 public class App {
