@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.ArrayList;
 
 import models.Pokemon;
 import models.dao.PokemonDao;
@@ -15,12 +15,14 @@ public class PokemonFactory {
         return pokemonDao.createPokemon(pokemon);
     }
 
-    public void getAllPokemon() {
-        List<Pokemon> pokemons = pokemonDao.getAllPokemon();
+    public ArrayList<Pokemon> getAllPokemon() {
+        ArrayList<Pokemon> pokemons = pokemonDao.getAllPokemon();
 
         for (Pokemon pokemon : pokemons) {
             System.out.println(pokemon);
         }
+
+        return pokemons;
     }
 
     public Pokemon getPokemonById(int id) {

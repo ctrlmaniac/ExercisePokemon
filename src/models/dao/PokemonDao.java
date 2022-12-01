@@ -1,6 +1,6 @@
 package models.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import models.Pokemon;
 
@@ -9,7 +9,7 @@ public interface PokemonDao {
 
     public Pokemon getPokemonById(int id);
 
-    public List<Pokemon> getAllPokemon();
+    public ArrayList<Pokemon> getAllPokemon();
 
     public void updatePokemon(Pokemon pokemon);
 

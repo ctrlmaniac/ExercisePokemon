@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import models.Pokemon;
 
 public class App {
@@ -28,5 +30,10 @@ public class App {
 
         // Check if pokemon p3 where deleted
         pokemonFactory.getAllPokemon();
+
+        // EX 2.1
+        for (int id : Ex2.convertFromList2Array(pokemonFactory.getAllPokemon())) {
+            System.out.println(id);
+        }
     }
 }
